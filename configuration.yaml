@@ -9,3 +9,6 @@ frontend:
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
+
+shell_command:
+  push_updates_to_github: /bin/bash ha_gitpush.sh
