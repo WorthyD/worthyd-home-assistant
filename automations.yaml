@@ -1,6 +1,6 @@
 - id: '1694788289546'
   alias: Garage Door announcement
-  description: ''
+  description: This is the description
   trigger:
   - type: opened
     platform: device
