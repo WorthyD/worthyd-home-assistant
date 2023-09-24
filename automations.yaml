@@ -60,3 +60,108 @@
   - service: shell_command.push_updates_to_github
     data: {}
   mode: single
+- id: '1695484154403'
+  alias: Reset Washer
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: 6174f2292b0ce3e1390d41a944c0f042
+    entity_id: d2ca10107154a2fda2d29bfb73d77d62
+    domain: binary_sensor
+  - platform: state
+    entity_id:
+    - binary_sensor.washer_door
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: house/washer/status
+      payload: idle
+  - service: script.turn_off
+    data: {}
+    target:
+      entity_id: script.washer_finished_notification_audible
+  mode: single
+- id: '1695496404493'
+  alias: Washer Running
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.dryer_plug_electric_consumption_w
+    above: 1
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: sensor.washer_status
+      state: idle
+    - condition: state
+      entity_id: sensor.washer_status
+      state: complete
+  action:
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: house/washer/status
+      payload: running
+  mode: single
+- id: washer_completed
+  alias: Washer Complete
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.dryer_plug_electric_consumption_w
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+    below: 3
+  condition:
+  - condition: state
+    entity_id: sensor.washer_status
+    state: running
+  action:
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: house/washer/status
+      payload: complete
+  - service: mqtt.publish
+    data:
+      retain: true
+      topic: house/washer/time_complete
+      payload: '{{ now().timestamp() }}'
+  mode: single
+- id: '1695497554668'
+  alias: Washer Notify
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.washer_status
+    from: running
+    to: complete
+  condition: []
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.office_display
+    data:
+      media_content_id: media-source://tts/tts.google_en_com?message=The+washer+is+complete&language=en-us
+      media_content_type: provider
+    metadata:
+      title: The washer is complete
+      thumbnail: https://brands.home-assistant.io/_/tts/logo.png
+      media_class: app
+      children_media_class:
+      navigateIds:
+      - {}
+      - media_content_type: app
+        media_content_id: media-source://tts
+      - media_content_type: provider
+        media_content_id: media-source://tts/tts.google_en_com?message=The+washer+is+complete&language=en-us
+  mode: single

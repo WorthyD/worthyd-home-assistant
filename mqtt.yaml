@@ -1,0 +1,7 @@
+sensor:
+  - object_id: "washer_status"
+    name: "Washer Status"
+    state_topic: "house/washer/status"
+  - object_id: "washer_complete"
+    name: "Washer Complete"
+    state_topic: "house/washer/time_complete"
