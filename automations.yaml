@@ -92,7 +92,7 @@
   trigger:
   - platform: numeric_state
     entity_id: sensor.dryer_plug_electric_consumption_w
-    above: 1
+    above: 3
   condition:
   - condition: or
     conditions:
@@ -117,8 +117,8 @@
     entity_id: sensor.dryer_plug_electric_consumption_w
     for:
       hours: 0
-      minutes: 0
-      seconds: 30
+      minutes: 1
+      seconds: 0
     below: 3
   condition:
   - condition: state
@@ -164,4 +164,8 @@
         media_content_id: media-source://tts
       - media_content_type: provider
         media_content_id: media-source://tts/tts.google_en_com?message=The+washer+is+complete&language=en-us
+  - service: script.turn_on
+    data: {}
+    target:
+      entity_id: script.washer_finished_notification_audible
   mode: single

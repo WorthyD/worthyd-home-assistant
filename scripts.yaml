@@ -8,9 +8,12 @@ washer_finished_notification_audible:
         state: complete
       sequence:
       - delay:
-          minutes: 45
-  - service: script.washer_audible
-    data: {}
+          hours: 0
+          minutes: 30
+          seconds: 0
+          milliseconds: 0
+      - service: script.washer_audible
+        data: {}
   mode: single
 washer_audible:
   alias: Washer Audible
@@ -20,7 +23,7 @@ washer_audible:
     state: complete
   - service: media_player.play_media
     target:
-      entity_id: media_player.downstairs_speaker
+      entity_id: media_player.office_display
     data:
       media_content_id: media-source://tts/tts.google_en_com?message=The+washer+is+still+complete&language=en-us
       media_content_type: provider
