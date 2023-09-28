@@ -169,3 +169,37 @@
     target:
       entity_id: script.washer_finished_notification_audible
   mode: single
+- id: '1695848014900'
+  alias: Meeting Start
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - calendar.daniel_revunit_com
+    to: 'on'
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      rgb_color:
+      - 255
+      - 0
+      - 0
+    target:
+      area_id: office
+  mode: single
+- id: '1695849901023'
+  alias: Meeting Off
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - calendar.daniel_revunit_com
+    to: 'off'
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.office_status_light_light
+  mode: single

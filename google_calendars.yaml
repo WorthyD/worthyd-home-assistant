@@ -1,0 +1,55 @@
+- cal_id: danieljworthy@gmail.com
+  entities:
+    - device_id: daniel_calendar
+      name: "Main Calendar"
+      search: "#event"
+      track: true
+
+- cal_id: ka8rjt289e79lt3eilc8ii50o0@group.calendar.google.com
+  entities:
+    - device_id: geek_nerd_holidays
+      ignore_availability: true
+      name: Geek / Nerd Holidays
+
+- cal_id: 2bfl7r8la20gkcfmhhatpdmfgo@group.calendar.google.com
+  entities:
+    - device_id: bills
+      ignore_availability: true
+      name: Bills
+
+- cal_id: addressbook#contacts@group.v.calendar.google.com
+  entities:
+    - device_id: birthdays
+      ignore_availability: true
+      name: Birthdays
+
+- cal_id: family00307186807994095666@group.calendar.google.com
+  entities:
+    - device_id: family
+      ignore_availability: true
+      name: Family
+
+- cal_id: en.usa#holiday@group.v.calendar.google.com
+  entities:
+    - device_id: holidays_in_united_states
+      ignore_availability: true
+      name: Holidays in United States
+
+- cal_id: theonering.net_7ajsprciq1q2s5fvb9j3a9kd2c@group.calendar.google.com
+  entities:
+    - device_id: theonering_net_s_today_in_middle_earth_time
+      ignore_availability: true
+      name: TheOneRing.net's - Today in Middle-earth (TIME)
+
+- cal_id: amandaworthy07@gmail.com
+  entities:
+    - device_id: amandaworthy07_gmail_com
+      ignore_availability: true
+      name: amandaworthy07@gmail.com
+
+- cal_id: daniel@revunit.com
+  entities:
+    - device_id: daniel_revunit_com
+      name: daniel@revunit.com
+      search: "#1:1"
+      track: true
