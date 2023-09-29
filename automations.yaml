@@ -203,3 +203,18 @@
     target:
       entity_id: light.office_status_light_light
   mode: single
+- id: '1695908614236'
+  alias: Front Door
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 0946b7ec84caf897a3ce2ba9ca9ede12
+    domain: nest
+    type: camera_motion
+  condition: []
+  action:
+  - service: script.turn_on
+    data: {}
+    target:
+      entity_id: script.front_door_light
+  mode: single

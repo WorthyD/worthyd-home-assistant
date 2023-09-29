@@ -39,3 +39,50 @@ washer_audible:
       - media_content_type: provider
         media_content_id: media-source://tts/tts.google_en_com?message=The+washer+is+still+complete&language=en-us
   mode: single
+front_door_light:
+  alias: Front Door Light
+  sequence:
+  - service: scene.create
+    data:
+      scene_id: office_light_before_front_door
+      snapshot_entities: light.office_status_light_light
+    enabled: true
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 250
+    enabled: true
+  - repeat:
+      count: 4
+      sequence:
+      - service: scene.turn_on
+        target:
+          entity_id: scene.new_scene
+        metadata: {}
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 1
+          milliseconds: 0
+      - service: scene.turn_on
+        target:
+          entity_id: scene.office_notify_off
+        metadata: {}
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 1
+          milliseconds: 0
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 250
+    enabled: true
+  - service: scene.turn_on
+    data: {}
+    target:
+      entity_id: scene.office_light_before_front_door
+  mode: single
+  icon: mdi:alarm-light

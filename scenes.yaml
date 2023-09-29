@@ -1,0 +1,52 @@
+- id: '1695910545815'
+  name: Office Light Notify On
+  entities:
+    light.office_status_light_light:
+      min_color_temp_kelvin: 1801
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 555
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: xy
+      brightness: 74
+      hs_color:
+      - 110.824
+      - 100
+      rgb_color:
+      - 39
+      - 255
+      - 0
+      xy_color:
+      - 0.183
+      - 0.738
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Office Status Light Light
+      supported_features: 44
+      state: 'on'
+  icon: mdi:alarm-light
+  metadata: {}
+- id: '1695910657368'
+  name: Office Notify Off
+  entities:
+    light.office_status_light_light:
+      min_color_temp_kelvin: 1801
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 555
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      off_with_transition: false
+      off_brightness: 148
+      friendly_name: Office Status Light Light
+      supported_features: 44
+      state: 'off'
+  icon: mdi:alarm-light
+  metadata: {}
