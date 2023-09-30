@@ -210,7 +210,7 @@
   - platform: device
     device_id: 0946b7ec84caf897a3ce2ba9ca9ede12
     domain: nest
-    type: camera_motion
+    type: camera_person
   condition: []
   action:
   - service: script.turn_on
