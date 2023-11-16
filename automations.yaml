@@ -218,3 +218,29 @@
     target:
       entity_id: script.front_door_light
   mode: single
+- id: '1700084464187'
+  alias: Evening Christmas Tree On
+  description: ''
+  trigger:
+  - platform: time
+    at: '17:00:00'
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 2bb93c4f3bca761b68e02ae4b87bfe5e
+    entity_id: d18294ef164de2ca5d601ef3781d08a1
+    domain: switch
+  mode: single
+- id: '1700084497804'
+  alias: Evening Christmas Tree Off
+  description: ''
+  trigger:
+  - platform: time
+    at: '20:15:00'
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 2bb93c4f3bca761b68e02ae4b87bfe5e
+    entity_id: d18294ef164de2ca5d601ef3781d08a1
+    domain: switch
+  mode: single
