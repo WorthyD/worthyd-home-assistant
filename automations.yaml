@@ -244,3 +244,20 @@
     entity_id: d18294ef164de2ca5d601ef3781d08a1
     domain: switch
   mode: single
+- id: '1700513864945'
+  alias: Mail Open
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: e50468eca04ce6bdb852703dda6a435a
+    entity_id: d329a69b0f62aeb444c6cd07248022dc
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: notify.discord_home_assistant
+    data:
+      message: MAIL!
+      target:
+      - '1151470003808374794'
+  mode: single
