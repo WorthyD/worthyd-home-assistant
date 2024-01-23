@@ -21,3 +21,8 @@ influxdb:
   password: password
   max_retries: 3
   default_measurement: state
+
+ics_calendar:
+  calendars:
+    - name: "JBH"
+      url: "https://outlook.office365.com/owa/calendar/9903254c1fd94671b77080e404edbbaf@jbhunt.com/c1132205c90241d0b6db533c0e32d53f11161040605479894425/calendar.ics"
