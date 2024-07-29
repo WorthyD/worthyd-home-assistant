@@ -135,6 +135,12 @@
       retain: true
       topic: house/washer/time_complete
       payload: '{{ now().timestamp() }}'
+  - service: notify.discord_home_assistant
+    metadata: {}
+    data:
+      target:
+      - '1151470003808374794'
+      message: The Washer is Complete!
   mode: single
 - id: '1695497554668'
   alias: Washer Notify
