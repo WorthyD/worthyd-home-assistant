@@ -240,11 +240,11 @@
 - id: '1700084497804'
   alias: Christmas Tree - Evening- Off
   description: ''
-  trigger:
-  - platform: time
-    at: '20:15:00'
-  condition: []
-  action:
+  triggers:
+  - at: '20:00:00'
+    trigger: time
+  conditions: []
+  actions:
   - type: turn_off
     device_id: 2bb93c4f3bca761b68e02ae4b87bfe5e
     entity_id: d18294ef164de2ca5d601ef3781d08a1
