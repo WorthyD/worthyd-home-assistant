@@ -112,35 +112,52 @@
 - id: washer_completed
   alias: Washer Complete
   description: ''
-  trigger:
-  - platform: numeric_state
-    entity_id: sensor.dryer_plug_electric_consumption_w
+  triggers:
+  - entity_id: sensor.dryer_plug_electric_consumption_w
     for:
       hours: 0
       minutes: 1
       seconds: 0
     below: 3
-  condition:
+    trigger: numeric_state
+    enabled: false
+  - device_id: cbf6ce80a6a2f40668ecd8e535c92209
+    domain: select
+    entity_id: 2c983a2b80f789021ec2c701a6612520
+    type: current_option_changed
+    trigger: device
+    from: start
+    to: stop
+    enabled: false
+  - trigger: state
+    entity_id:
+    - sensor.washer_current_status
+    from: end
+    to: power_off
+  conditions:
   - condition: state
     entity_id: sensor.washer_status
     state: running
-  action:
-  - service: mqtt.publish
-    data:
+    enabled: false
+  actions:
+  - data:
       retain: true
       topic: house/washer/status
       payload: complete
-  - service: mqtt.publish
-    data:
+    action: mqtt.publish
+    enabled: false
+  - data:
       retain: true
       topic: house/washer/time_complete
       payload: '{{ now().timestamp() }}'
-  - service: notify.discord_home_assistant
-    metadata: {}
+    action: mqtt.publish
+    enabled: false
+  - metadata: {}
     data:
       target:
       - '1151470003808374794'
       message: The Washer is Complete!
+    action: notify.discord_home_assistant
   mode: single
 - id: '1695497554668'
   alias: Washer Notify
@@ -292,4 +309,54 @@
     device_id: 2bb93c4f3bca761b68e02ae4b87bfe5e
     entity_id: d18294ef164de2ca5d601ef3781d08a1
     domain: switch
+  mode: single
+- id: '1747918688062'
+  alias: Dryer Complete
+  description: ''
+  triggers:
+  - entity_id: sensor.dryer_plug_electric_consumption_w
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+    below: 3
+    trigger: numeric_state
+    enabled: false
+  - device_id: 69f9e8c0481d889e65a9d861874a57af
+    domain: select
+    entity_id: 6f216d320a90b2030743b24a751da0ec
+    type: current_option_changed
+    trigger: device
+    from: start
+    to: stop
+    enabled: false
+  - trigger: state
+    entity_id:
+    - sensor.dryer_current_status
+    from: end
+    to: power_off
+  conditions:
+  - condition: state
+    entity_id: sensor.washer_status
+    state: running
+    enabled: false
+  actions:
+  - data:
+      retain: true
+      topic: house/washer/status
+      payload: complete
+    action: mqtt.publish
+    enabled: false
+  - data:
+      retain: true
+      topic: house/washer/time_complete
+      payload: '{{ now().timestamp() }}'
+    action: mqtt.publish
+    enabled: false
+  - metadata: {}
+    data:
+      target:
+      - '1151470003808374794'
+      message: The Dryer is Complete!
+    action: notify.discord_home_assistant
   mode: single
